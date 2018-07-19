@@ -1,11 +1,11 @@
 var moods = ["Happy", "Indifferent", "Angry"]
 
-var cat1 = {
-  name: "Mr. Snibbly",
-  imageUrl: "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&h=350",
-  numberOfPets: 0,
-  moo: moods[2]
-}
+// var cat1 = {
+//   name: "Mr. Snibbly",
+//   imageUrl: "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&h=350",
+//   numberOfPets: 0,
+//   moo: moods[2]
+// }
 
 // var cat2 = {
 //   name: "Grumpy cat",
@@ -14,30 +14,34 @@ var cat1 = {
 //   mood: "Grumpy"
 // }
 
-function Cat(name, imageUrl){
-  this.name = name
+function Cat(nameInput, imageUrl){
+  this.name = nameInput
   this.imageUrl = imageUrl
   this.numberOfPets = 0
   this.mood = moods[0]
+  this.meow = function meow(){
+    console.log("meow")
+  }
 }
 
-var cat1 = new Cat("Mr. Snibbly", "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&h=350")
-var cat2 = new Cat("Grumpy Cat", "https://pbs.twimg.com/profile_images/948294484596375552/RyGNqDEM_400x400.jpg")
+// var cat1 = new Cat("Mr. Snibbly", "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&h=350")
+// var cat2 = new Cat("Grumpy Cat", "https://pbs.twimg.com/profile_images/948294484596375552/RyGNqDEM_400x400.jpg")
 
 var cats = []
-cats.push(cat1)
-cats.push(cat2)
+// cats.push(cat1)
+// cats.push(cat2)
 console.log(cats)
 
 
 function petCat(index){
   var cat = cats[index]
   cat.numberOfPets++
+  cat.meow()
   console.log(cat.numberOfPets)
   update(cat, index)
 }
 
-function setup(){
+function draw(){
   var catsElem = document.getElementById("cats")
   var template = ""
 
@@ -56,7 +60,7 @@ function setup(){
     `
   }
 
-catsElem.innerHTML = template
+  catsElem.innerHTML = template
 }
 
 function giveTreat(index){
@@ -84,11 +88,13 @@ function update (cat, index){
   }
 }
 
-setup()
 
+function makeCat(){
+  var name = document.getElementById('catName').value
+  var image = document.getElementById('catImage').value
+  var cat = new Cat(name, image)
+  cats.push(cat)
+  draw()
+}
 
-
-
-
-
-
+console.log(document)
